@@ -216,18 +216,15 @@
         }
 
         .hero-image-box {
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 460px;
-            margin: 0 auto;
         }
 
         /* HERO VIDEO MASKED WITH SMOOTH ROUNDED CORNERS */
         .hero-image-box video {
             width: 100%;
-            max-width: 290px;
+            max-width: 310px;
             height: auto;
             aspect-ratio: 856 / 1760;
             object-fit: contain;
@@ -236,43 +233,6 @@
             -webkit-clip-path: inset(0 round 40px);
             filter: drop-shadow(0 16px 36px rgba(213, 63, 140, 0.22));
             display: block;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* FITMATCH-INSPIRED 3D ROTATING BODY MANNEQUIN OVERLAY */
-        .hero-mannequin-overlay {
-            position: absolute;
-            right: -55px;
-            bottom: -20px;
-            width: 210px;
-            height: 330px;
-            background: rgba(15, 23, 42, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 20px;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-            z-index: 5;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mannequin-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(213, 63, 140, 0.2);
-            border: 1px solid rgba(251, 182, 206, 0.4);
-            color: #fbb6ce;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 9px;
-            border-radius: 12px;
-            letter-spacing: 0.4px;
-            z-index: 10;
         }
 
         /* Section Layout */
@@ -1427,12 +1387,6 @@
                         <video autoplay loop muted playsinline poster="assets/app_assets/Loop_Sign_Up.png">
                             <source src="assets/app_assets/loop_hero_uncropped.mp4" type="video/mp4">
                         </video>
-
-                        <!-- FITMATCH-STYLE 3D ROTATING MANNEQUIN OVERLAY (OVERLAPPING RIGHT SIDE OF PHONE) -->
-                        <div class="hero-mannequin-overlay">
-                            <div class="mannequin-badge">✨ 3D Body Mesh</div>
-                            <canvas id="heroMannequinCanvas" width="210" height="330" style="display: block; width: 210px; height: 330px;"></canvas>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2501,131 +2455,8 @@
             });
         }
 
-        // 3D Rotating Parametric Body Mannequin Canvas Engine (FitMatch Style Overlay)
-        function initHero3DMannequin() {
-            const canvas = document.getElementById('heroMannequinCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let angleY = 0;
-
-            // 3D Body Mannequin Profile (Anatomical Cross-Sections)
-            const bodyProfile = [
-                { y: -125, rX: 16, rZ: 13 }, // Neck
-                { y: -105, rX: 46, rZ: 21 }, // Shoulders
-                { y: -75,  rX: 42, rZ: 26 }, // Upper chest
-                { y: -45,  rX: 52, rZ: 38 }, // Bust peak (3D volume)
-                { y: -22,  rX: 40, rZ: 25 }, // Underbust fold
-                { y: 5,    rX: 34, rZ: 21 }, // Narrow waist
-                { y: 38,   rX: 46, rZ: 30 }, // Hips
-                { y: 72,   rX: 50, rZ: 35 }, // Pelvis/Glutes
-                { y: 110,  rX: 42, rZ: 28 }, // Upper Thighs
-                { y: 138,  rX: 34, rZ: 22 }  // Mid Thighs
-            ];
-
-            const landmarkNodes = [
-                { y: -105, rX: 46, rZ: 21 }, // Shoulders
-                { y: -45,  rX: 52, rZ: 38 }, // Bust Apex
-                { y: -22,  rX: 40, rZ: 25 }, // Underbust
-                { y: 5,    rX: 34, rZ: 21 }, // Waist
-                { y: 72,   rX: 50, rZ: 35 }  // Hips
-            ];
-
-            function renderFrame() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const centerX = canvas.width / 2;
-                const centerY = canvas.height / 2 + 10;
-                const cosA = Math.cos(angleY);
-                const sinA = Math.sin(angleY);
-
-                // 1. Draw horizontal cross-section rings
-                bodyProfile.forEach((slice) => {
-                    ctx.beginPath();
-                    const points = 28;
-                    for (let p = 0; p <= points; p++) {
-                        const theta = (p / points) * Math.PI * 2;
-                        const rx = slice.rX * Math.cos(theta);
-                        const rz = slice.rZ * Math.sin(theta);
-                        
-                        const x3d = rx * cosA - rz * sinA;
-                        const z3d = rx * sinA + rz * cosA;
-                        const y3d = slice.y;
-
-                        const screenX = centerX + x3d;
-                        const screenY = centerY + y3d;
-
-                        if (p === 0) ctx.moveTo(screenX, screenY);
-                        else ctx.lineTo(screenX, screenY);
-                    }
-                    
-                    // Highlight key anatomical rings (Bust & Underbust) in brand pink
-                    if (slice.y === -45 || slice.y === -22) {
-                        ctx.strokeStyle = 'rgba(244, 114, 182, 0.9)';
-                        ctx.lineWidth = 2.0;
-                    } else {
-                        ctx.strokeStyle = 'rgba(129, 140, 248, 0.45)';
-                        ctx.lineWidth = 1;
-                    }
-                    ctx.stroke();
-                });
-
-                // 2. Draw vertical longitudinal meridian curves (10 meridians)
-                const meridians = 10;
-                for (let m = 0; m < meridians; m++) {
-                    const theta = (m / meridians) * Math.PI * 2;
-                    ctx.beginPath();
-                    bodyProfile.forEach((slice, i) => {
-                        const rx = slice.rX * Math.cos(theta);
-                        const rz = slice.rZ * Math.sin(theta);
-                        
-                        const x3d = rx * cosA - rz * sinA;
-                        const y3d = slice.y;
-
-                        const screenX = centerX + x3d;
-                        const screenY = centerY + y3d;
-
-                        if (i === 0) ctx.moveTo(screenX, screenY);
-                        else ctx.lineTo(screenX, screenY);
-                    });
-                    ctx.strokeStyle = 'rgba(213, 63, 140, 0.35)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-
-                // 3. Draw glowing landmark keypoint dots
-                landmarkNodes.forEach(node => {
-                    for (let a = 0; a < Math.PI * 2; a += Math.PI / 2) {
-                        const rx = node.rX * Math.cos(a);
-                        const rz = node.rZ * Math.sin(a);
-                        
-                        const x3d = rx * cosA - rz * sinA;
-                        const z3d = rx * sinA + rz * cosA;
-                        
-                        // Only draw front-facing dots
-                        if (z3d > -8) {
-                            const screenX = centerX + x3d;
-                            const screenY = centerY + node.y;
-                            
-                            ctx.beginPath();
-                            ctx.arc(screenX, screenY, 3.2, 0, Math.PI * 2);
-                            ctx.fillStyle = '#34d399';
-                            ctx.shadowColor = '#34d399';
-                            ctx.shadowBlur = 7;
-                            ctx.fill();
-                            ctx.shadowBlur = 0;
-                        }
-                    }
-                });
-
-                angleY += 0.014; // smooth 360° continuous rotation
-                requestAnimationFrame(renderFrame);
-            }
-
-            renderFrame();
-        }
-
-        // Start 3D Mannequin renderer and B2B video prototype loop on DOM load
+        // Start video prototype cursor simulation on DOM load
         document.addEventListener('DOMContentLoaded', () => {
-            initHero3DMannequin();
             runB2bVideoPrototypeLoop();
         });
 
