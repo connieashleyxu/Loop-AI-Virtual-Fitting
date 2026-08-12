@@ -1413,14 +1413,14 @@
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <span style="display: inline-block; width: 10px; height: 10px; background: #38a169; border-radius: 50%; box-shadow: 0 0 8px #38a169;"></span>
                             <strong style="font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: var(--text-main);">LIVE TELEMETRY STREAM: ATHENA LINGERIE CO.</strong>
-                            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); background: #f1f5f9; padding: 3px 8px; border-radius: 6px;">Q3-2026 Active</span>
+                            <span id="b2bDemoBadge" style="font-size: 11px; font-weight: 800; color: var(--primary-dark); background: rgba(213, 63, 140, 0.08); padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">▶ LIVE DEMO LOOPING</span>
                         </div>
                         
                         <!-- View Mode Tabs -->
                         <div style="display: flex; gap: 6px; background: #f8fafc; padding: 4px; border-radius: 10px; border: 1px solid var(--border-color);">
-                            <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" onclick="switchB2bTab('anomaly')">📊 Fit Anomaly Heatmap</button>
-                            <button class="b2b-tab-btn" id="b2bTabBtn-variance" onclick="switchB2bTab('variance')">📐 Size Chart Variance</button>
-                            <button class="b2b-tab-btn" id="b2bTabBtn-regional" onclick="switchB2bTab('regional')">📦 Regional Restock Signals</button>
+                            <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" onclick="switchB2bTab('anomaly', true)">📊 Fit Anomaly Heatmap</button>
+                            <button class="b2b-tab-btn" id="b2bTabBtn-variance" onclick="switchB2bTab('variance', true)">📐 Size Chart Variance</button>
+                            <button class="b2b-tab-btn" id="b2bTabBtn-regional" onclick="switchB2bTab('regional', true)">📦 Regional Restock Signals</button>
                         </div>
                     </div>
 
@@ -1483,28 +1483,28 @@
                                     <td>Upper Cup Gaping (Spill/Gap Distortion)</td>
                                     <td><strong>14.2%</strong></td>
                                     <td>Tighten upper cup neckline elastic tape by 0.2 inches</td>
-                                    <td><span style="background: #fff5f5; color: #e53e3e; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #feb2b2;">🔴 ANOMALY FLAG</span></td>
+                                    <td><span style="background: #fff5f5; color: #e53e3e; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #feb2b2; white-space: nowrap; display: inline-block;">🔴 ANOMALY FLAG</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>SKU #BR-108 (Seamless T-Shirt Bra)</strong></td>
                                     <td>Band Pinching (Inframammary Fold)</td>
                                     <td><strong>11.8%</strong></td>
                                     <td>Increase elastane/spandex blend from 12% to 15% in side wing</td>
-                                    <td><span style="background: #fffaf0; color: #dd6b20; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #fbd38d;">🟡 MODERATE</span></td>
+                                    <td><span style="background: #fffaf0; color: #dd6b20; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #fbd38d; white-space: nowrap; display: inline-block;">🟡 MODERATE</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>SKU #BR-305 (Full Coverage Contour)</strong></td>
                                     <td>Wire Gore Digging (Sternum Pressure)</td>
                                     <td><strong>2.1%</strong></td>
                                     <td>Wire gore curvature matches 3D body ribcage data optimally</td>
-                                    <td><span style="background: #f0fff4; color: #38a169; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4;">🟢 OPTIMAL</span></td>
+                                    <td><span style="background: #f0fff4; color: #38a169; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4; white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>SKU #BR-501 (Wireless Everyday Bralette)</strong></td>
                                     <td>Shoulder Strap Ride-Up</td>
                                     <td><strong>1.8%</strong></td>
                                     <td>Strap tension distribution matches 98.2% of scanned profiles</td>
-                                    <td><span style="background: #f0fff4; color: #38a169; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4;">🟢 OPTIMAL</span></td>
+                                    <td><span style="background: #f0fff4; color: #38a169; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4; white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2227,10 +2227,28 @@
             }
         });
 
-        // B2B Dashboard Tab Switcher
-        function switchB2bTab(tabKey) {
-            const tabs = ['anomaly', 'variance', 'regional'];
-            tabs.forEach(key => {
+        // B2B Dashboard Tab Switcher & Auto-Play Video-like Loop
+        let b2bAutoPlayTimer = null;
+        let b2bCurrentTabIndex = 0;
+        const b2bTabs = ['anomaly', 'variance', 'regional'];
+
+        function startB2bAutoPlay() {
+            if (b2bAutoPlayTimer) clearInterval(b2bAutoPlayTimer);
+            b2bAutoPlayTimer = setInterval(() => {
+                b2bCurrentTabIndex = (b2bCurrentTabIndex + 1) % b2bTabs.length;
+                switchB2bTab(b2bTabs[b2bCurrentTabIndex], false);
+            }, 3800);
+        }
+
+        function switchB2bTab(tabKey, userClicked = false) {
+            if (userClicked && b2bAutoPlayTimer) {
+                clearInterval(b2bAutoPlayTimer);
+                b2bAutoPlayTimer = null;
+                const badge = document.getElementById('b2bDemoBadge');
+                if (badge) badge.innerText = '⏸️ DEMO PAUSED';
+            }
+            b2bCurrentTabIndex = b2bTabs.indexOf(tabKey);
+            b2bTabs.forEach(key => {
                 const btn = document.getElementById(`b2bTabBtn-${key}`);
                 const content = document.getElementById(`b2bPanel-${key}`);
                 if (btn && content) {
@@ -2244,6 +2262,11 @@
                 }
             });
         }
+
+        // Start auto-play on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            startB2bAutoPlay();
+        });
 
         function switchArchTab(tabKey) {
             const tabs = ['latency', 'privacy', 'evals', 'sizing'];
