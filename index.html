@@ -990,7 +990,7 @@
             display: block;
         }
 
-        /* LAPTOP FRAME MOCKUP STYLES */
+        /* LAPTOP FRAME MOCKUP STYLES - FIXED RIGID DISPLAY HEIGHT */
         .laptop-container {
             max-width: 1060px;
             margin: 0 auto;
@@ -1001,7 +1001,7 @@
             background: #1e293b;
             border-radius: 22px 22px 4px 4px;
             padding: 12px 12px 0 12px;
-            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.22);
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.25);
             border: 1px solid #334155;
             position: relative;
         }
@@ -1016,10 +1016,26 @@
         }
 
         .laptop-screen {
-            background: #ffffff;
+            background: #0f172a;
             border-radius: 8px 8px 0 0;
             overflow: hidden;
-            border: 1px solid #0f172a;
+            border: 1px solid #1e293b;
+            min-height: 520px;
+            max-height: 520px;
+        }
+
+        .b2b-dashboard-card {
+            background: #0f172a;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .b2b-panel-container {
+            height: 280px;
+            min-height: 280px;
+            max-height: 280px;
+            overflow-y: auto;
         }
 
         .laptop-base-lip {
@@ -1463,9 +1479,8 @@
 
                         <!-- Laptop Screen Inner Display -->
                         <div class="laptop-screen">
-                            
-                            <!-- B2B ENTERPRISE WEB APP TOP CHROME BAR -->
-                            <div style="background: #0f172a; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b;">
+                                      <!-- B2B ENTERPRISE WEB APP TOP CHROME BAR (MATCHING LOOP APP DARK THEME) -->
+                            <div style="background: #1e293b; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155;">
                                 <!-- Window Dots + App Brand Title -->
                                 <div style="display: flex; align-items: center; gap: 14px;">
                                     <div style="display: flex; gap: 6px;">
@@ -1474,205 +1489,208 @@
                                         <span style="width: 10px; height: 10px; background: #10b981; border-radius: 50%;"></span>
                                     </div>
                                     <span style="font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 800; color: #f8fafc; letter-spacing: 0.3px;">
-                                        ⚡ Loop Observability Studio <span style="color: #94a3b8; font-weight: 600; font-size: 11px;">v2.4 (Enterprise)</span>
+                                        ⚡ Loop Observability Studio <span style="color: #f472b6; font-weight: 700; font-size: 11px;">v2.4 (Enterprise API)</span>
                                     </span>
                                 </div>
 
                                 <!-- Partner Brand API Sync Status Pill -->
                                 <div style="display: flex; align-items: center; gap: 12px;">
-                                    <span style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.3); display: inline-flex; align-items: center; gap: 6px;">
+                                    <span style="background: rgba(16, 185, 129, 0.18); color: #34d399; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.4); display: inline-flex; align-items: center; gap: 6px;">
                                         <span style="width: 6px; height: 6px; background: #34d399; border-radius: 50%; box-shadow: 0 0 6px #34d399;"></span>
                                         Partner API Direct Sync: 96.8% Fit Accuracy
                                     </span>
-                                    <span style="font-size: 11px; font-weight: 700; color: #94a3b8; background: #1e293b; padding: 3px 8px; border-radius: 6px;">Athena Lingerie Co.</span>
+                                    <span style="font-size: 11px; font-weight: 700; color: #cbd5e1; background: #0f172a; padding: 3px 10px; border-radius: 6px; border: 1px solid #334155;">Athena Lingerie Co.</span>
                                 </div>
                             </div>
 
-                            <!-- B2B DASHBOARD MAIN BODY APP CONTENT -->
-                            <div class="b2b-dashboard-card" style="background: #ffffff; padding: 20px 22px;">
+                            <!-- B2B DASHBOARD MAIN BODY APP CONTENT (LOOP APP DARK THEME) -->
+                            <div class="b2b-dashboard-card" style="background: #0f172a; padding: 20px 22px;">
                                 
                                 <!-- App Header Controls & Tab Bar -->
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #1e293b;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                        <span style="display: inline-block; width: 9px; height: 9px; background: #38a169; border-radius: 50%; box-shadow: 0 0 8px #38a169;"></span>
-                                        <strong style="font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 800; color: var(--text-main);">LIVE TELEMETRY STREAM: ATHENA LINGERIE CO.</strong>
-                                        <span id="b2bDemoBadge" style="font-size: 10.5px; font-weight: 800; color: var(--primary-dark); background: rgba(213, 63, 140, 0.08); padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;">▶ LIVE DEMO LOOPING</span>
+                                        <span style="display: inline-block; width: 9px; height: 9px; background: #34d399; border-radius: 50%; box-shadow: 0 0 8px #34d399;"></span>
+                                        <strong style="font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 800; color: #f8fafc;">LIVE TELEMETRY STREAM: ATHENA LINGERIE CO.</strong>
                                     </div>
                                     
                                     <!-- View Mode Tabs -->
-                                    <div style="display: flex; gap: 6px; background: #f8fafc; padding: 4px; border-radius: 10px; border: 1px solid var(--border-color);">
-                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" onclick="switchB2bTab('anomaly', true)">📊 Fit Anomaly Heatmap</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance" onclick="switchB2bTab('variance', true)">📐 Size Chart Variance</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional" onclick="switchB2bTab('regional', true)">📦 Regional Restock Signals</button>
+                                    <div style="display: flex; gap: 6px; background: #1e293b; padding: 4px; border-radius: 10px; border: 1px solid #334155;">
+                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" onclick="switchB2bTab('anomaly', true)" style="color: #cbd5e1;">📊 Fit Anomaly Heatmap</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance" onclick="switchB2bTab('variance', true)" style="color: #cbd5e1;">📐 Size Chart Variance</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional" onclick="switchB2bTab('regional', true)" style="color: #cbd5e1;">📦 Regional Restock Signals</button>
                                     </div>
                                 </div>
 
                                 <!-- Top KPI Telemetry Metric Cards Grid -->
-                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;">
-                                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px;">
-                                        <div style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Fit Return Rate</div>
-                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #38a169; display: flex; align-items: center; gap: 6px;">
-                                            6.2% <span style="font-size: 10.5px; font-weight: 700; color: #38a169; background: #f0fff4; padding: 2px 6px; border-radius: 4px;">↓ 82.2%</span>
+                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px;">
+                                    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px 14px;">
+                                        <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">Fit Return Rate</div>
+                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 6px;">
+                                            6.2% <span style="font-size: 10.5px; font-weight: 700; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 2px 6px; border-radius: 4px;">↓ 82.2%</span>
                                         </div>
-                                        <div style="font-size: 10.5px; color: var(--text-subtle); margin-top: 2px;">Baseline: 34.8% without Loop</div>
+                                        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px;">Baseline: 34.8% without Loop</div>
                                     </div>
 
-                                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px;">
-                                        <div style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Partner Fit Match Accuracy</div>
-                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 6px;">
-                                            96.8% <span style="font-size: 10px; font-weight: 800; color: #38a169; background: #f0fff4; padding: 2px 6px; border-radius: 4px;">Direct API</span>
+                                    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px 14px;">
+                                        <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">Partner Fit Match Accuracy</div>
+                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #f472b6; display: flex; align-items: center; gap: 6px;">
+                                            96.8% <span style="font-size: 10px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 2px 6px; border-radius: 4px;">Direct API</span>
                                         </div>
-                                        <div style="font-size: 10.5px; color: var(--text-subtle); margin-top: 2px;">Partner brand grading sync</div>
+                                        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px;">Partner brand grading sync</div>
                                     </div>
 
-                                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px;">
-                                        <div style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Pattern Anomaly Alerts</div>
-                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #dd6b20; display: flex; align-items: center; gap: 6px;">
-                                            2.1% <span style="font-size: 10.5px; font-weight: 700; color: #dd6b20; background: #fffaf0; padding: 2px 6px; border-radius: 4px;">1 Flagged SKU</span>
+                                    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px 14px;">
+                                        <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">Pattern Anomaly Alerts</div>
+                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #fb923c; display: flex; align-items: center; gap: 6px;">
+                                            2.1% <span style="font-size: 10.5px; font-weight: 700; color: #fb923c; background: rgba(251, 146, 60, 0.15); padding: 2px 6px; border-radius: 4px;">1 Flagged SKU</span>
                                         </div>
-                                        <div style="font-size: 10.5px; color: var(--text-subtle); margin-top: 2px;">Cup gaping &amp; wire stress</div>
+                                        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px;">Cup gaping &amp; wire stress</div>
                                     </div>
 
-                                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px;">
-                                        <div style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Monthly Restock Savings</div>
-                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #3182ce;">
+                                    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px 14px;">
+                                        <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">Monthly Restock Savings</div>
+                                        <div style="font-family: 'Outfit', sans-serif; font-size: 21px; font-weight: 800; color: #38bdf8;">
                                             $46,200
                                         </div>
-                                        <div style="font-size: 10.5px; color: var(--text-subtle); margin-top: 2px;">Eliminated reverse logistics</div>
+                                        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px;">Eliminated reverse logistics</div>
                                     </div>
                                 </div>
 
-                                <!-- DASHBOARD PANEL 1: FIT ANOMALY HEATMAP TABLE -->
-                                <div class="b2b-panel-content active" id="b2bPanel-anomaly">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: var(--text-main);">
-                                            🔍 SKU Fit Anomaly &amp; Pattern Error Observability Matrix
-                                        </h4>
-                                        <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Partner Telemetry Feed</span>
+                                <!-- FIXED HEIGHT PANEL CONTAINER (PREVENTS ANY DYNAMIC LAPTOP SCREEN HEIGHT SHIFTING) -->
+                                <div class="b2b-panel-container">
+                                    
+                                    <!-- DASHBOARD PANEL 1: FIT ANOMALY HEATMAP TABLE -->
+                                    <div class="b2b-panel-content active" id="b2bPanel-anomaly">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #f8fafc;">
+                                                🔍 SKU Fit Anomaly &amp; Pattern Error Observability Matrix
+                                            </h4>
+                                            <span style="font-size: 11px; font-weight: 700; color: #94a3b8;">Partner Telemetry Feed</span>
+                                        </div>
+                                        <table class="cv-matrix-table" style="background: #1e293b; border-radius: 8px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: #0f172a;">
+                                                    <th style="color: #cbd5e1;">Style SKU &amp; Category</th>
+                                                    <th style="color: #cbd5e1;">Primary Fit Anomaly Signal</th>
+                                                    <th style="color: #cbd5e1;">Anomaly Rate</th>
+                                                    <th style="color: #cbd5e1;">Pattern Engineering Recommendation</th>
+                                                    <th style="color: #cbd5e1;">Status Flag</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1px solid #334155;">
+                                                    <td><strong style="color: #f8fafc;">SKU #BR-402 (Lace Plunge Bra)</strong></td>
+                                                    <td style="color: #cbd5e1;">Upper Cup Gaping (Spill/Gap Distortion)</td>
+                                                    <td><strong style="color: #f8fafc;">14.2%</strong></td>
+                                                    <td style="color: #cbd5e1;">Tighten upper cup neckline elastic tape by 0.2 inches</td>
+                                                    <td><span style="background: rgba(239, 68, 68, 0.2); color: #f87171; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(248, 113, 113, 0.4); white-space: nowrap; display: inline-block;">🔴 ANOMALY FLAG</span></td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #334155;">
+                                                    <td><strong style="color: #f8fafc;">SKU #BR-108 (Seamless T-Shirt Bra)</strong></td>
+                                                    <td style="color: #cbd5e1;">Band Pinching (Inframammary Fold)</td>
+                                                    <td><strong style="color: #f8fafc;">11.8%</strong></td>
+                                                    <td style="color: #cbd5e1;">Increase elastane/spandex blend from 12% to 15% in side wing</td>
+                                                    <td><span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(251, 191, 36, 0.4); white-space: nowrap; display: inline-block;">🟡 MODERATE</span></td>
+                                                </tr>
+                                                <tr style="border-bottom: 1px solid #334155;">
+                                                    <td><strong style="color: #f8fafc;">SKU #BR-305 (Full Coverage Contour)</strong></td>
+                                                    <td style="color: #cbd5e1;">Wire Gore Digging (Sternum Pressure)</td>
+                                                    <td><strong style="color: #f8fafc;">1.4%</strong></td>
+                                                    <td style="color: #cbd5e1;">Wire gore curvature matches 3D body ribcage data optimally</td>
+                                                    <td><span style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.4); white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong style="color: #f8fafc;">SKU #BR-501 (Wireless Everyday Bralette)</strong></td>
+                                                    <td style="color: #cbd5e1;">Shoulder Strap Ride-Up</td>
+                                                    <td><strong style="color: #f8fafc;">1.1%</strong></td>
+                                                    <td style="color: #cbd5e1;">Strap tension distribution matches 98.8% of scanned profiles</td>
+                                                    <td><span style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.4); white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <table class="cv-matrix-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Style SKU &amp; Category</th>
-                                                <th>Primary Fit Anomaly Signal</th>
-                                                <th>Anomaly Rate</th>
-                                                <th>Pattern Engineering Recommendation</th>
-                                                <th>Status Flag</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><strong>SKU #BR-402 (Lace Plunge Bra)</strong></td>
-                                                <td>Upper Cup Gaping (Spill/Gap Distortion)</td>
-                                                <td><strong>14.2%</strong></td>
-                                                <td>Tighten upper cup neckline elastic tape by 0.2 inches</td>
-                                                <td><span style="background: #fff5f5; color: #e53e3e; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #feb2b2; white-space: nowrap; display: inline-block;">🔴 ANOMALY FLAG</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>SKU #BR-108 (Seamless T-Shirt Bra)</strong></td>
-                                                <td>Band Pinching (Inframammary Fold)</td>
-                                                <td><strong>11.8%</strong></td>
-                                                <td>Increase elastane/spandex blend from 12% to 15% in side wing</td>
-                                                <td><span style="background: #fffaf0; color: #dd6b20; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #fbd38d; white-space: nowrap; display: inline-block;">🟡 MODERATE</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>SKU #BR-305 (Full Coverage Contour)</strong></td>
-                                                <td>Wire Gore Digging (Sternum Pressure)</td>
-                                                <td><strong>1.4%</strong></td>
-                                                <td>Wire gore curvature matches 3D body ribcage data optimally</td>
-                                                <td><span style="background: #f0fff4; color: #38a169; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4; white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>SKU #BR-501 (Wireless Everyday Bralette)</strong></td>
-                                                <td>Shoulder Strap Ride-Up</td>
-                                                <td><strong>1.1%</strong></td>
-                                                <td>Strap tension distribution matches 98.8% of scanned profiles</td>
-                                                <td><span style="background: #f0fff4; color: #38a169; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; border: 1px solid #9ae6b4; white-space: nowrap; display: inline-block;">🟢 OPTIMAL</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+                                    <!-- DASHBOARD PANEL 2: SIZE CHART VARIANCE VS REAL 3D BODY MESH -->
+                                    <div class="b2b-panel-content" id="b2bPanel-variance">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #f8fafc;">
+                                                📐 Brand Size Chart Specs vs. Real Consumer 3D Body Topography
+                                            </h4>
+                                            <span style="font-size: 11px; font-weight: 700; color: #94a3b8;">14,280 Scanned Fit Profiles</span>
+                                        </div>
+                                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px;">
+                                                <strong style="font-size: 12.5px; color: #f472b6;">Size 32B Variance</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 4px;">Underbust Spec: 27.5"</div>
+                                                <div style="font-size: 11.5px; color: #cbd5e1;">Real Body Avg: 27.8"</div>
+                                                <div style="margin-top: 8px; background: #0f172a; height: 5px; border-radius: 4px; overflow: hidden;">
+                                                    <div style="background: #34d399; width: 94%; height: 100%;"></div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 700; color: #34d399; display: block; margin-top: 4px;">+0.3" Offset (Normal Elastic)</span>
+                                            </div>
+
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px;">
+                                                <strong style="font-size: 12.5px; color: #f472b6;">Size 34C Variance</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 4px;">Overbust Spec: 36.5"</div>
+                                                <div style="font-size: 11.5px; color: #cbd5e1;">Real Body Avg: 37.1"</div>
+                                                <div style="margin-top: 8px; background: #0f172a; height: 5px; border-radius: 4px; overflow: hidden;">
+                                                    <div style="background: #fb923c; width: 78%; height: 100%;"></div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 700; color: #fb923c; display: block; margin-top: 4px;">+0.6" Volume Undercount</span>
+                                            </div>
+
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px;">
+                                                <strong style="font-size: 12.5px; color: #f472b6;">Size 36D Variance</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 4px;">Underbust Spec: 31.5"</div>
+                                                <div style="font-size: 11.5px; color: #cbd5e1;">Real Body Avg: 31.4"</div>
+                                                <div style="margin-top: 8px; background: #0f172a; height: 5px; border-radius: 4px; overflow: hidden;">
+                                                    <div style="background: #34d399; width: 98%; height: 100%;"></div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 700; color: #34d399; display: block; margin-top: 4px;">-0.1" Alignment (Optimal)</span>
+                                            </div>
+
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px;">
+                                                <strong style="font-size: 12.5px; color: #f472b6;">Size 38DD Variance</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 4px;">Overbust Spec: 42.0"</div>
+                                                <div style="font-size: 11.5px; color: #cbd5e1;">Real Body Avg: 42.9"</div>
+                                                <div style="margin-top: 8px; background: #0f172a; height: 5px; border-radius: 4px; overflow: hidden;">
+                                                    <div style="background: #f87171; width: 68%; height: 100%;"></div>
+                                                </div>
+                                                <span style="font-size: 10px; font-weight: 700; color: #f87171; display: block; margin-top: 4px;">+0.9" Cup Underestimation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- DASHBOARD PANEL 3: REGIONAL INVENTORY & RESTOCK SIGNALS -->
+                                    <div class="b2b-panel-content" id="b2bPanel-regional">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: #f8fafc;">
+                                                📦 Regional Sizing Telemetry &amp; Inventory Restock Signals
+                                            </h4>
+                                            <span style="font-size: 11px; font-weight: 700; color: #94a3b8;">Real-time Geographic Demand</span>
+                                        </div>
+                                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 14px;">
+                                                <strong style="font-size: 13.5px; color: #f8fafc;">Northeast Fulfillment Zone</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 5px;">High demand shift detected towards sister sizes: <strong>32DD &amp; 34D</strong></div>
+                                                <div style="font-size: 11px; font-weight: 700; color: #34d399; margin-top: 8px;">➔ Action: Reallocate +18% inventory from 36B to 32DD</div>
+                                            </div>
+
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 14px;">
+                                                <strong style="font-size: 13.5px; color: #f8fafc;">West Coast Fulfillment Zone</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 5px;">Peak volume demand in wireless bralettes: <strong>34C &amp; 36B</strong></div>
+                                                <div style="font-size: 11px; font-weight: 700; color: #38bdf8; margin-top: 8px;">➔ Action: Maintain current 94% optimal stock ratio</div>
+                                            </div>
+
+                                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 14px;">
+                                                <strong style="font-size: 13.5px; color: #f8fafc;">Southern Fulfillment Zone</strong>
+                                                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 5px;">Stockout risk flagged on plunge cups: <strong>36C &amp; 38D</strong></div>
+                                                <div style="font-size: 11px; font-weight: 700; color: #fb923c; margin-top: 8px;">➔ Action: Trigger restock order (+500 units) to avoid stockout</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
                                 </div>
-
-                                <!-- DASHBOARD PANEL 2: SIZE CHART VARIANCE VS REAL 3D BODY MESH -->
-                                <div class="b2b-panel-content" id="b2bPanel-variance">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: var(--text-main);">
-                                            📐 Brand Size Chart Specs vs. Real Consumer 3D Body Topography
-                                        </h4>
-                                        <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">14,280 Scanned Fit Profiles</span>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
-                                        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px;">
-                                            <strong style="font-size: 12.5px; color: var(--primary-dark);">Size 32B Variance</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Underbust Spec: 27.5"</div>
-                                            <div style="font-size: 11.5px; color: var(--text-muted);">Real Body Avg: 27.8"</div>
-                                            <div style="margin-top: 8px; background: #e2e8f0; height: 5px; border-radius: 4px; overflow: hidden;">
-                                                <div style="background: #38a169; width: 94%; height: 100%;"></div>
-                                            </div>
-                                            <span style="font-size: 10px; font-weight: 700; color: #38a169; display: block; margin-top: 4px;">+0.3" Offset (Normal Elastic Stretch)</span>
-                                        </div>
-
-                                        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px;">
-                                            <strong style="font-size: 12.5px; color: var(--primary-dark);">Size 34C Variance</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Overbust Spec: 36.5"</div>
-                                            <div style="font-size: 11.5px; color: var(--text-muted);">Real Body Avg: 37.1"</div>
-                                            <div style="margin-top: 8px; background: #e2e8f0; height: 5px; border-radius: 4px; overflow: hidden;">
-                                                <div style="background: #dd6b20; width: 78%; height: 100%;"></div>
-                                            </div>
-                                            <span style="font-size: 10px; font-weight: 700; color: #dd6b20; display: block; margin-top: 4px;">+0.6" Volume Undercount</span>
-                                        </div>
-
-                                        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px;">
-                                            <strong style="font-size: 12.5px; color: var(--primary-dark);">Size 36D Variance</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Underbust Spec: 31.5"</div>
-                                            <div style="font-size: 11.5px; color: var(--text-muted);">Real Body Avg: 31.4"</div>
-                                            <div style="margin-top: 8px; background: #e2e8f0; height: 5px; border-radius: 4px; overflow: hidden;">
-                                                <div style="background: #38a169; width: 98%; height: 100%;"></div>
-                                            </div>
-                                            <span style="font-size: 10px; font-weight: 700; color: #38a169; display: block; margin-top: 4px;">-0.1" Alignment (Optimal)</span>
-                                        </div>
-
-                                        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px;">
-                                            <strong style="font-size: 12.5px; color: var(--primary-dark);">Size 38DD Variance</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Overbust Spec: 42.0"</div>
-                                            <div style="font-size: 11.5px; color: var(--text-muted);">Real Body Avg: 42.9"</div>
-                                            <div style="margin-top: 8px; background: #e2e8f0; height: 5px; border-radius: 4px; overflow: hidden;">
-                                                <div style="background: #e53e3e; width: 68%; height: 100%;"></div>
-                                            </div>
-                                            <span style="font-size: 10px; font-weight: 700; color: #e53e3e; display: block; margin-top: 4px;">+0.9" Cup Underestimation</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- DASHBOARD PANEL 3: REGIONAL INVENTORY & RESTOCK SIGNALS -->
-                                <div class="b2b-panel-content" id="b2bPanel-regional">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; color: var(--text-main);">
-                                            📦 Regional Sizing Telemetry &amp; Inventory Restock Signals
-                                        </h4>
-                                        <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Real-time Geographic Demand</span>
-                                    </div>
-                                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-                                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
-                                            <strong style="font-size: 13.5px; color: var(--text-main);">Northeast Fulfillment Zone</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">High demand shift detected towards sister sizes: <strong>32DD &amp; 34D</strong></div>
-                                            <div style="font-size: 11px; font-weight: 700; color: #38a169; margin-top: 8px;">➔ Action: Reallocate +18% inventory from 36B to 32DD</div>
-                                        </div>
-
-                                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
-                                            <strong style="font-size: 13.5px; color: var(--text-main);">West Coast Fulfillment Zone</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">Peak volume demand in wireless bralettes: <strong>34C &amp; 36B</strong></div>
-                                            <div style="font-size: 11px; font-weight: 700; color: #3182ce; margin-top: 8px;">➔ Action: Maintain current 94% optimal stock ratio</div>
-                                        </div>
-
-                                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
-                                            <strong style="font-size: 13.5px; color: var(--text-main);">Southern Fulfillment Zone</strong>
-                                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">Stockout risk flagged on plunge cups: <strong>36C &amp; 38D</strong></div>
-                                            <div style="font-size: 11px; font-weight: 700; color: #dd6b20; margin-top: 8px;">➔ Action: Trigger restock order (+500 units) to avoid stockout</div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -2335,8 +2353,6 @@
             if (userClicked && b2bAutoPlayTimer) {
                 clearInterval(b2bAutoPlayTimer);
                 b2bAutoPlayTimer = null;
-                const badge = document.getElementById('b2bDemoBadge');
-                if (badge) badge.innerText = '⏸️ DEMO PAUSED';
             }
             b2bCurrentTabIndex = b2bTabs.indexOf(tabKey);
             b2bTabs.forEach(key => {
