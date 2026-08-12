@@ -966,20 +966,21 @@
         .b2b-tab-btn {
             background: transparent;
             border: none;
-            padding: 6px 12px;
+            padding: 6px 14px;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 12px;
             font-weight: 700;
-            color: var(--text-muted);
+            color: #94a3b8;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            cursor: default;
+            transition: all 0.25s ease;
         }
 
         .b2b-tab-btn.active {
-            background: #ffffff;
-            color: var(--primary-dark);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            background: #d53f8c !important;
+            color: #ffffff !important;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(213, 63, 140, 0.4);
         }
 
         .b2b-panel-content {
@@ -1566,9 +1567,9 @@
                                     
                                     <!-- View Mode Tabs (Non-Interactable Video Prototype Mode) -->
                                     <div style="display: flex; gap: 6px; background: #1e293b; padding: 4px; border-radius: 10px; border: 1px solid #334155; pointer-events: none;">
-                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" style="color: #cbd5e1; cursor: default;">📊 Fit Anomaly Heatmap</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance" style="color: #cbd5e1; cursor: default;">📐 Size Chart Variance</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional" style="color: #cbd5e1; cursor: default;">📦 Regional Restock Signals</button>
+                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly">📊 Fit Anomaly Heatmap</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance">📐 Size Chart Variance</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional">📦 Regional Restock Signals</button>
                                     </div>
                                 </div>
 
