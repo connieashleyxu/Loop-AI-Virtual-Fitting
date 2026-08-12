@@ -514,6 +514,51 @@
             border: none;
         }
 
+        .btn-pdf-header-open {
+            background: rgba(213, 63, 140, 0.1);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-light);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-pdf-header-open:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .mobile-pdf-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 30px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .btn-pdf-fallback {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(213, 63, 140, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         /* PERFECT 100% VERTICAL CENTERING FLEXBOX LAYOUT FOR B2B TELEMETRY SECTION */
         .b2b-flex-layout {
             display: flex;
@@ -1262,16 +1307,32 @@
         </section>
     </main>
 
-    <!-- CLICK-TO-PREVIEW PDF MODAL DIALOG OVERLAY (ONLY DISPLAYED ON BUTTON CLICK) -->
+    <!-- CLICK-TO-PREVIEW PDF MODAL DIALOG OVERLAY (UNIVERSALLY COMPATIBLE WITH MOBILE & DESKTOP) -->
     <div id="pdfModalOverlay" class="pdf-modal-overlay" onclick="closePdfModal()">
         <div class="pdf-modal-card" onclick="event.stopPropagation()">
             <div class="pdf-modal-header">
                 <div class="pdf-modal-title">
-                    <span>📄</span> Loop Executive Brief PDF Document
+                    <span>📄</span> Loop Executive Brief PDF
                 </div>
-                <button onclick="closePdfModal()" class="btn-close-modal">✕ Close Preview</button>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <a href="Loop_Executive_Brief.pdf" target="_blank" class="btn-pdf-header-open">
+                        📥 Open / Download PDF ↗
+                    </a>
+                    <button onclick="closePdfModal()" class="btn-close-modal">✕ Close</button>
+                </div>
             </div>
-            <iframe src="Loop_Executive_Brief.pdf" class="pdf-modal-iframe" title="Loop Executive Brief PDF Preview"></iframe>
+            <object data="Loop_Executive_Brief.pdf" type="application/pdf" class="pdf-modal-iframe">
+                <div class="mobile-pdf-fallback">
+                    <div style="font-size: 36px; margin-bottom: 12px;">📄</div>
+                    <h3 style="font-size: 18px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px;">Loop Executive Brief PDF</h3>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px; max-width: 320px;">
+                        Tap below to open or download the complete 3-page executive briefing document directly on your mobile device.
+                    </p>
+                    <a href="Loop_Executive_Brief.pdf" target="_blank" class="btn-pdf-fallback">
+                        📥 Open PDF Document ↗
+                    </a>
+                </div>
+            </object>
         </div>
     </div>
 
