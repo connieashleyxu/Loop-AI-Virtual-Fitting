@@ -1020,8 +1020,10 @@
             border-radius: 8px 8px 0 0;
             overflow: hidden;
             border: 1px solid #1e293b;
-            min-height: 520px;
-            max-height: 520px;
+            min-height: 610px;
+            max-height: 610px;
+            position: relative;
+            user-select: none;
         }
 
         .b2b-dashboard-card {
@@ -1032,10 +1034,51 @@
         }
 
         .b2b-panel-container {
-            height: 280px;
-            min-height: 280px;
-            max-height: 280px;
+            height: 370px;
+            min-height: 370px;
+            max-height: 370px;
             overflow-y: auto;
+        }
+
+        /* PRETEND MOUSE CURSOR STYLES */
+        .fake-cursor-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            z-index: 999;
+            transition: transform 0.65s cubic-bezier(0.34, 1.25, 0.64, 1);
+            transform: translate(520px, 32px);
+        }
+
+        .fake-cursor-icon {
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+        }
+
+        .fake-click-ripple {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #f472b6;
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+
+        .fake-click-ripple.animate {
+            animation: clickRipple 0.45s ease-out forwards;
+        }
+
+        @keyframes clickRipple {
+            0% { opacity: 1; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(1.6); }
         }
 
         .laptop-base-lip {
@@ -1479,7 +1522,15 @@
 
                         <!-- Laptop Screen Inner Display -->
                         <div class="laptop-screen">
-                                      <!-- B2B ENTERPRISE WEB APP TOP CHROME BAR (MATCHING LOOP APP DARK THEME) -->
+                            <!-- PRETEND MOUSE CURSOR OVERLAY FOR VIDEO PROTOTYPE -->
+                            <div class="fake-cursor-wrapper" id="fakeCursor">
+                                <div class="fake-click-ripple" id="fakeRipple"></div>
+                                <svg class="fake-cursor-icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5.5 3.5L18.5 11.5L12 13.5L9.5 20.5L5.5 3.5Z" fill="#ffffff" stroke="#0f172a" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <!-- B2B ENTERPRISE WEB APP TOP CHROME BAR (MATCHING LOOP APP DARK THEME) -->
                             <div style="background: #1e293b; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155;">
                                 <!-- Window Dots + App Brand Title -->
                                 <div style="display: flex; align-items: center; gap: 14px;">
@@ -1513,11 +1564,11 @@
                                         <strong style="font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 800; color: #f8fafc;">LIVE TELEMETRY STREAM: ATHENA LINGERIE CO.</strong>
                                     </div>
                                     
-                                    <!-- View Mode Tabs -->
-                                    <div style="display: flex; gap: 6px; background: #1e293b; padding: 4px; border-radius: 10px; border: 1px solid #334155;">
-                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" onclick="switchB2bTab('anomaly', true)" style="color: #cbd5e1;">📊 Fit Anomaly Heatmap</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance" onclick="switchB2bTab('variance', true)" style="color: #cbd5e1;">📐 Size Chart Variance</button>
-                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional" onclick="switchB2bTab('regional', true)" style="color: #cbd5e1;">📦 Regional Restock Signals</button>
+                                    <!-- View Mode Tabs (Non-Interactable Video Prototype Mode) -->
+                                    <div style="display: flex; gap: 6px; background: #1e293b; padding: 4px; border-radius: 10px; border: 1px solid #334155; pointer-events: none;">
+                                        <button class="b2b-tab-btn active" id="b2bTabBtn-anomaly" style="color: #cbd5e1; cursor: default;">📊 Fit Anomaly Heatmap</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-variance" style="color: #cbd5e1; cursor: default;">📐 Size Chart Variance</button>
+                                        <button class="b2b-tab-btn" id="b2bTabBtn-regional" style="color: #cbd5e1; cursor: default;">📦 Regional Restock Signals</button>
                                     </div>
                                 </div>
 
@@ -2336,25 +2387,58 @@
             }
         });
 
-        // B2B Dashboard Tab Switcher & Auto-Play Video-like Loop
-        let b2bAutoPlayTimer = null;
+        // B2B Video Prototype Loop & Pretend Mouse Cursor Simulator
         let b2bCurrentTabIndex = 0;
         const b2bTabs = ['anomaly', 'variance', 'regional'];
 
-        function startB2bAutoPlay() {
-            if (b2bAutoPlayTimer) clearInterval(b2bAutoPlayTimer);
-            b2bAutoPlayTimer = setInterval(() => {
-                b2bCurrentTabIndex = (b2bCurrentTabIndex + 1) % b2bTabs.length;
-                switchB2bTab(b2bTabs[b2bCurrentTabIndex], false);
-            }, 3800);
+        function updateFakeCursorPos(tabKey) {
+            const cursor = document.getElementById('fakeCursor');
+            const ripple = document.getElementById('fakeRipple');
+            const btn = document.getElementById(`b2bTabBtn-${tabKey}`);
+            const screen = document.querySelector('.laptop-screen');
+
+            if (cursor && btn && screen) {
+                const btnRect = btn.getBoundingClientRect();
+                const screenRect = screen.getBoundingClientRect();
+                
+                // Relative coordinates inside the laptop screen
+                const relX = btnRect.left - screenRect.left + (btnRect.width / 2) - 4;
+                const relY = btnRect.top - screenRect.top + (btnRect.height / 2) - 2;
+
+                cursor.style.transform = `translate(${relX}px, ${relY}px)`;
+
+                // Trigger click ripple after cursor arrives (0.55s)
+                setTimeout(() => {
+                    if (ripple) {
+                        ripple.classList.remove('animate');
+                        void ripple.offsetWidth;
+                        ripple.classList.add('animate');
+                    }
+                }, 550);
+            }
         }
 
-        function switchB2bTab(tabKey, userClicked = false) {
-            if (userClicked && b2bAutoPlayTimer) {
-                clearInterval(b2bAutoPlayTimer);
-                b2bAutoPlayTimer = null;
-            }
-            b2bCurrentTabIndex = b2bTabs.indexOf(tabKey);
+        function runB2bVideoPrototypeLoop() {
+            setInterval(() => {
+                b2bCurrentTabIndex = (b2bCurrentTabIndex + 1) % b2bTabs.length;
+                const nextTab = b2bTabs[b2bCurrentTabIndex];
+                
+                // Move pretend cursor over target tab button
+                updateFakeCursorPos(nextTab);
+
+                // Perform tab view switch right as click ripple activates
+                setTimeout(() => {
+                    switchB2bTab(nextTab);
+                }, 650);
+            }, 4200);
+
+            // Initial positioning on load
+            setTimeout(() => {
+                updateFakeCursorPos('anomaly');
+            }, 600);
+        }
+
+        function switchB2bTab(tabKey) {
             b2bTabs.forEach(key => {
                 const btn = document.getElementById(`b2bTabBtn-${key}`);
                 const content = document.getElementById(`b2bPanel-${key}`);
@@ -2370,9 +2454,9 @@
             });
         }
 
-        // Start auto-play on DOM load
+        // Start video prototype cursor simulation on DOM load
         document.addEventListener('DOMContentLoaded', () => {
-            startB2bAutoPlay();
+            runB2bVideoPrototypeLoop();
         });
 
         function switchArchTab(tabKey) {
