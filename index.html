@@ -2761,8 +2761,17 @@
             }
         });
 
-        // Click-to-Preview PDF Modal Controls
+        // Click-to-Preview PDF Modal Controls (Dynamic Cache-Busting PDF Loader)
         function openPdfModal() {
+            const timestamp = Date.now();
+            const pdfUrl = 'Loop_Executive_Brief.pdf?t=' + timestamp;
+            
+            const obj = document.querySelector('.pdf-modal-iframe');
+            if (obj) obj.setAttribute('data', pdfUrl);
+            
+            const links = document.querySelectorAll('.btn-pdf-header-open, .btn-pdf-fallback');
+            links.forEach(link => link.setAttribute('href', pdfUrl));
+            
             document.getElementById('pdfModalOverlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
