@@ -1489,23 +1489,36 @@
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
                 gap: 8px !important;
-                overflow-x: visible !important;
-                white-space: normal !important;
-                margin-bottom: 18px !important;
+                border-bottom: none !important; /* REMOVE DESKTOP BOTTOM BORDER THAT CLIPPED BUTTONS */
+                overflow: visible !important;   /* PREVENT ANY BUTTON CUTOFF */
+                height: auto !important;
+                margin-bottom: 24px !important;
+                padding-bottom: 0 !important;
             }
             .cv-tab-btn {
                 flex: none !important;
                 width: 100% !important;
-                padding: 10px 8px !important;
-                font-size: 11.5px !important;
+                height: auto !important;
+                min-height: 38px !important;    /* SLEEK SKINNY TOUCH TARGET */
+                padding: 6px 4px !important;    /* SKINNY SLEEK TAB BUTTONS */
+                font-size: clamp(9.5px, 2.7vw, 11px) !important;
+                line-height: 1.2 !important;
                 text-align: center !important;
-                white-space: normal !important;
-                border: 1px solid var(--border-color) !important;
+                white-space: nowrap !important; /* GUARANTEES 1-LINE FIT */
+                letter-spacing: -0.25px !important;
+                border: 1.5px solid var(--border-color) !important;
                 border-radius: 8px !important;
+                margin-bottom: 0 !important;   /* REMOVE DESKTOP -2px MARGIN */
+                box-sizing: border-box !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
             .cv-tab-btn.active {
                 border-color: var(--primary) !important;
                 background: rgba(213, 63, 140, 0.08) !important;
+                color: var(--primary-dark) !important;
+                font-weight: 800 !important;
             }
 
             .stepper-nav {
@@ -1514,6 +1527,7 @@
                 gap: 8px !important;
                 overflow-x: visible !important;
                 width: 100% !important;
+                margin-bottom: 20px !important;
             }
             .step-pill {
                 flex: none !important;
@@ -1521,16 +1535,48 @@
                 text-align: center !important;
                 justify-content: center !important;
                 font-size: 11.5px !important;
-                padding: 8px 10px !important;
+                padding: 6px 8px !important;
             }
 
-            /* FIX ISSUE 1: PREVENT BOTTOM CUTOFF ON MOBILE TABS */
+            /* REMOVE EXTRA OUTER BOX WRAPPER AROUND TABLE ROWS ON MOBILE */
+            .table-responsive-wrapper {
+                overflow-x: visible !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 0 16px 0 !important;
+            }
+            .mobile-table-hint {
+                display: none !important;
+            }
+
+            /* FIX ISSUE 1: PREVENT BOTTOM CUTOFF ON MOBILE TABS & REMOVE REDUNDANT CONTAINER BORDER */
             .cv-tabs-container {
-                padding-bottom: 40px !important;
-                margin-bottom: 40px !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 0 40px 0 !important;
+                margin-bottom: 32px !important;
+                overflow: visible !important;
+                box-sizing: border-box !important;
             }
             .cv-tab-content {
-                padding-bottom: 24px !important;
+                padding-bottom: 20px !important;
+                margin-bottom: 12px !important;
+                overflow: visible !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            .cv-tab-content .cv-matrix-table tr:last-child {
+                margin-bottom: 16px !important;
+            }
+            .cv-tab-content > *:last-child {
+                margin-bottom: 16px !important;
+                padding-bottom: 8px !important;
             }
 
             /* FIX ISSUE 2: HIDE MISALIGNED FAKE CURSOR ON SCALED MOBILE TELEMETRY & FORMAT DARK TELEMETRY TABLE */
@@ -2142,9 +2188,9 @@
                             </div>
                         </div>
 
-                        <!-- Scalable Interactive SVG Diagram (1200 x 680) - 100% Fluid Width, Zero Horizontal Scroll -->
-                        <div style="width: 100%; overflow: hidden; background: #fafafa; border: 1px solid var(--border-color); border-radius: 14px; padding: 16px 6px; text-align: center;">
-                            <svg viewBox="0 0 1200 680" width="100%" height="auto" style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
+                        <!-- Scalable Interactive SVG Diagram (1200 x 680) - Mobile High-Definition Zoom Enabled -->
+                        <div class="mobile-svg-container" style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; background: #fafafa; border: 1px solid var(--border-color); border-radius: 14px; padding: 16px 8px; text-align: center;">
+                            <svg viewBox="0 0 1200 680" width="100%" height="auto" style="min-width: 650px; width: 100%; max-width: 1200px; height: auto; display: block; margin: 0 auto; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;">
                                 <defs>
                                     <!-- Arrowhead Markers -->
                                     <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -2264,14 +2310,12 @@
                                     <text x="600" y="374" font-size="12" font-weight="800" fill="#b83280" text-anchor="middle">Invariant Verified?</text>
                                 </g>
 
-                                <!-- Decision Yes Branch for Node 7 -->
-                                <g>
-                                    <rect x="704" y="356" width="32" height="18" rx="4" fill="#ffffff" stroke="#fed7e2" stroke-width="1" />
-                                    <text x="720" y="369" font-size="10" font-weight="800" fill="#b83280" text-anchor="middle">YES</text>
-                                </g>
-
                                 <!-- INTER-COLUMN CONNECTOR 2: Node 7 (Region 2) -> Node 8 (Region 3) -->
                                 <path d="M 700 365 L 802 365 L 802 120 L 855 120" fill="none" stroke="#d53f8c" stroke-width="2" marker-end="url(#arrow-pink)" />
+                                <g filter="url(#shadow)">
+                                    <rect x="710" y="355" width="36" height="20" rx="5" fill="#ffffff" stroke="#d53f8c" stroke-width="1.5" />
+                                    <text x="728" y="369" font-size="10" font-weight="800" fill="#b83280" text-anchor="middle">YES</text>
+                                </g>
                                 <g>
                                     <rect x="755" y="225" width="94" height="36" rx="6" fill="#ffffff" stroke="#d53f8c" stroke-width="1.5" />
                                     <text x="802" y="240" font-size="10" font-weight="800" fill="#6b46c1" text-anchor="middle">TLS 1.3 Fit</text>
